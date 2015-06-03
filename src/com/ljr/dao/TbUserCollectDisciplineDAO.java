@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ljr.entity.TbUserCollectDiscipline;
+import com.ljr.entity.TbUserWrongDiscipline;
 import com.ljr.util.Page;
 
 public class TbUserCollectDisciplineDAO extends BaseHibernateDAO {
@@ -35,7 +36,26 @@ public class TbUserCollectDisciplineDAO extends BaseHibernateDAO {
 			session.close();
 		}
 	}
-
+	
+	/**
+	 * 查询是否存在了用户收藏的题目
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public TbUserCollectDiscipline checkExist(Integer userId, Integer disciplineId){
+		String queryString = "from TbUserCollectDiscipline as model where "
+										+ "model.tbUser.id = ?"
+										+ "and model.tbDiscipline.id = ?";
+		Query queryObject = getSession().createQuery(queryString);
+		queryObject.setParameter(0, userId);
+		queryObject.setParameter(1, disciplineId);
+		if(queryObject.list().isEmpty()){
+			return null;
+		}
+		return (TbUserCollectDiscipline)queryObject.list().get(0);
+	}
+	
 	public void delete(TbUserCollectDiscipline persistentInstance) {
 		log.debug("deleting TbUserCollectDiscipline instance");
 		Session session = getSession();

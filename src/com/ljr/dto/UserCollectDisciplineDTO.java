@@ -2,7 +2,7 @@ package com.ljr.dto;
 
 import java.io.Serializable;
 
-public class UserWrongDisciplineDTO implements Serializable {
+public class UserCollectDisciplineDTO implements Serializable {
 	private String userId;
 	private String disciplineId;
 	
