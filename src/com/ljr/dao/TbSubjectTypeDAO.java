@@ -19,11 +19,21 @@ public class TbSubjectTypeDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String NAME = "name";
 
+	public static void main(String[] args) {
+		TbSubjectTypeDAO dao = new TbSubjectTypeDAO();
+		TbSubjectType transientInstance = new TbSubjectType("英语");
+		dao.save(transientInstance);
+	}
+	
 	public void save(TbSubjectType transientInstance) {
 		log.debug("saving TbSubjectType instance");
 		Session session = getSession();
 		Transaction beginTransaction = session.beginTransaction();
 		try {
+			List findByName = findByName(transientInstance.getName());
+			if(!findByName.isEmpty()){
+				throw new RuntimeException();
+			}
 			session.save(transientInstance);
 			beginTransaction.commit();
 			log.debug("save successful");
@@ -158,6 +168,10 @@ public class TbSubjectTypeDAO extends BaseHibernateDAO {
 		Session session = getSession();
 		Transaction beginTransaction = session.beginTransaction();
 		try {
+			List findByName = findByName(detachedInstance.getName());
+			if(!findByName.isEmpty()){
+				throw new RuntimeException();
+			}
 			session.merge(detachedInstance);
 			beginTransaction.commit();
 			log.debug("merge successful");

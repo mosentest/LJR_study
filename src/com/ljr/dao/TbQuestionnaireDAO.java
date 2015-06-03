@@ -90,7 +90,7 @@ public class TbQuestionnaireDAO extends BaseHibernateDAO {
 	}
 	
 	/**
-	 * 问卷编号，类型编号
+	 * 问卷编号，类型编号，类型名称
 	 * @param params
 	 * @return
 	 */
@@ -106,6 +106,9 @@ public class TbQuestionnaireDAO extends BaseHibernateDAO {
 			if (params[1] != null && !"".equals(params[1].trim())) {
 				buffer.append(" tb.tbSubjectType.id=:csid and ");
 			}
+			if (params[2] != null && !"".equals(params[2].trim())) {
+				buffer.append(" tb.tbSubjectType.name like:cname and ");
+			}
 			buffer.append(" 1=1 ");
 		}
 		Query queryObject = getSession().createQuery(buffer.toString());
@@ -116,6 +119,9 @@ public class TbQuestionnaireDAO extends BaseHibernateDAO {
 			}
 			if (params[1] != null && !"".equals(params[1].trim())) {
 				queryObject.setInteger("csid", Integer.parseInt(params[1]));
+			}
+			if (params[2] != null && !"".equals(params[2].trim())) {
+				queryObject.setString("cname", params[2]);
 			}
 		}
 		return queryObject;

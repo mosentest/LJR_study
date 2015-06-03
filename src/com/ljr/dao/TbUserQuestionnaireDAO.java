@@ -119,7 +119,7 @@ public class TbUserQuestionnaireDAO extends BaseHibernateDAO {
 	}
 	
 	/**
-	 * 编号，用户名，类型编号
+	 * 编号，用户编号，用户名，类型编号, 类型名称
 	 * @param params
 	 * @return
 	 */
@@ -133,10 +133,16 @@ public class TbUserQuestionnaireDAO extends BaseHibernateDAO {
 				buffer.append(" tb.id=:cid and ");
 			}
 			if (params[1] != null && !"".equals(params[1].trim())) {
-				buffer.append(" tb.tbUser.username like:cusername and ");
+				buffer.append(" tb.tbUser.id=:uid and ");
 			}
 			if (params[2] != null && !"".equals(params[2].trim())) {
+				buffer.append(" tb.tbUser.username like:cusername and ");
+			}
+			if (params[3] != null && !"".equals(params[3].trim())) {
 				buffer.append(" tb.tbQuestionnaire.tbSubjectType.id=:csid and ");
+			}
+			if (params[4] != null && !"".equals(params[4].trim())) {
+				buffer.append(" tb.tbQuestionnaire.tbSubjectType.name like:cname and ");
 			}
 			buffer.append(" 1=1 ");
 		}
@@ -147,10 +153,16 @@ public class TbUserQuestionnaireDAO extends BaseHibernateDAO {
 				queryObject.setInteger("cid", Integer.parseInt(params[0]));
 			}
 			if (params[1] != null && !"".equals(params[1].trim())) {
-				queryObject.setString("cusername", "%"+params[1]+"%");
+				queryObject.setInteger("uid", Integer.parseInt(params[1]));
 			}
 			if (params[2] != null && !"".equals(params[2].trim())) {
-				queryObject.setInteger("csid", Integer.parseInt(params[2]));
+				queryObject.setString("cusername", "%"+params[2]+"%");
+			}
+			if (params[3] != null && !"".equals(params[3].trim())) {
+				queryObject.setInteger("csid", Integer.parseInt(params[3]));
+			}
+			if (params[4] != null && !"".equals(params[4].trim())) {
+				queryObject.setString("cname", "%"+params[4]+"%");
 			}
 		}
 		return queryObject;

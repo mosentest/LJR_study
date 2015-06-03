@@ -126,7 +126,7 @@ public class TbArticleDAO extends BaseHibernateDAO {
 	}
 	
 	/**
-	 * 文章编号，标题，类型编号
+	 * 文章编号，标题，类型编号，类型类型
 	 * @param params
 	 * @return
 	 */
@@ -145,6 +145,9 @@ public class TbArticleDAO extends BaseHibernateDAO {
 			if (params[2] != null && !"".equals(params[2].trim())) {
 				buffer.append(" tb.tbSubjectType.id=:csid and ");
 			}
+			if (params[3] != null && !"".equals(params[3].trim())) {
+				buffer.append(" tb.tbSubjectType.name like:cname and ");
+			}
 			buffer.append(" 1=1 ");
 		}
 		Query queryObject = getSession().createQuery(buffer.toString());
@@ -158,6 +161,9 @@ public class TbArticleDAO extends BaseHibernateDAO {
 			}
 			if (params[2] != null && !"".equals(params[2].trim())) {
 				queryObject.setInteger("csid", Integer.parseInt(params[2]));
+			}
+			if (params[3] != null && !"".equals(params[3].trim())) {
+				queryObject.setString("cname", "%"+params[3]+"%");
 			}
 		}
 		return queryObject;

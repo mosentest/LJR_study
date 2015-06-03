@@ -119,7 +119,7 @@ public class TbUserCollectDisciplineDAO extends BaseHibernateDAO {
 	}
 	
 	/**
-	 * 编号，用户帐号
+	 * 编号，用户id，用户帐号
 	 * @param params
 	 * @return
 	 */
@@ -133,6 +133,9 @@ public class TbUserCollectDisciplineDAO extends BaseHibernateDAO {
 				buffer.append(" tb.id=:cid and ");
 			}
 			if (params[1] != null && !"".equals(params[1].trim())) {
+				buffer.append(" tb.tbUser.id =:uid and ");
+			}
+			if (params[2] != null && !"".equals(params[2].trim())) {
 				buffer.append(" tb.tbUser.username like:cname and ");
 			}
 			buffer.append(" 1=1 ");
@@ -144,7 +147,10 @@ public class TbUserCollectDisciplineDAO extends BaseHibernateDAO {
 				queryObject.setInteger("cid", Integer.parseInt(params[0]));
 			}
 			if (params[1] != null && !"".equals(params[1].trim())) {
-				queryObject.setString("cname", "%"+params[1]+"%");
+				queryObject.setInteger("uid", Integer.parseInt(params[1]));
+			}
+			if (params[2] != null && !"".equals(params[2].trim())) {
+				queryObject.setString("cname", "%"+params[2]+"%");
 			}
 		}
 		return queryObject;

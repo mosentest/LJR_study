@@ -47,7 +47,7 @@ public class TbUserWrongDisciplineDAO extends BaseHibernateDAO {
 	 * @param value
 	 * @return
 	 */
-	public TbQuestionnaireDiscipline checkExist(Integer userId, Integer disciplineId){
+	public TbUserWrongDiscipline checkExist(Integer userId, Integer disciplineId){
 		String queryString = "from TbUserWrongDiscipline as model where "
 										+ "model.tbUser.id = ?"
 										+ "and model.tbDiscipline.id = ?";
@@ -57,7 +57,7 @@ public class TbUserWrongDisciplineDAO extends BaseHibernateDAO {
 		if(queryObject.list().isEmpty()){
 			return null;
 		}
-		return (TbQuestionnaireDiscipline)queryObject.list().get(0);
+		return (TbUserWrongDiscipline)queryObject.list().get(0);
 	}
 	public void delete(TbUserWrongDiscipline persistentInstance) {
 		log.debug("deleting TbUserWrongDiscipline instance");
@@ -146,7 +146,7 @@ public class TbUserWrongDisciplineDAO extends BaseHibernateDAO {
 	}
 	
 	/**
-	 * 编号，用户名，题目问题
+	 * 编号，用户编号，用户名，题目问题
 	 * @param params
 	 * @return
 	 */
@@ -160,9 +160,12 @@ public class TbUserWrongDisciplineDAO extends BaseHibernateDAO {
 				buffer.append(" tb.id=:cid and ");
 			}
 			if (params[1] != null && !"".equals(params[1].trim())) {
-				buffer.append(" tb.tbUser.username like:cusername and ");
+				buffer.append(" tb.tbUser.id=:uid and ");
 			}
 			if (params[2] != null && !"".equals(params[2].trim())) {
+				buffer.append(" tb.tbUser.username like:cusername and ");
+			}
+			if (params[3] != null && !"".equals(params[3].trim())) {
 				buffer.append(" tb.tbDiscipline.question like:ctitle and ");
 			}
 			buffer.append(" 1=1 ");
@@ -174,10 +177,13 @@ public class TbUserWrongDisciplineDAO extends BaseHibernateDAO {
 				queryObject.setInteger("cid", Integer.parseInt(params[0]));
 			}
 			if (params[1] != null && !"".equals(params[1].trim())) {
-				queryObject.setString("cusername", "%"+params[1]+"%");
+				queryObject.setInteger("uid", Integer.parseInt(params[1]));
 			}
 			if (params[2] != null && !"".equals(params[2].trim())) {
-				queryObject.setString("ctitle", "%"+params[2]+"%");
+				queryObject.setString("cusername", "%"+params[2]+"%");
+			}
+			if (params[3] != null && !"".equals(params[3].trim())) {
+				queryObject.setString("ctitle", "%"+params[3]+"%");
 			}
 		}
 		return queryObject;
