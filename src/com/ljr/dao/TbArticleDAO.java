@@ -121,6 +121,7 @@ public class TbArticleDAO extends BaseHibernateDAO {
 			return pageList;
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
+			re.printStackTrace();
 			throw re;
 		}
 	}

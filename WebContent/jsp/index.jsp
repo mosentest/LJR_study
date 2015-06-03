@@ -9,7 +9,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>学习后台管理系统</title>
+<title>移动微学习系统后台管理</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/bui-min.css" rel="stylesheet" type="text/css" />
@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div class="header">
-		<div class="dl-title"><span class="">学习后台管理系统</span></div>
+		<div class="dl-title"><span class="">移动微学习系统后台管理</span></div>
 		<div class="dl-log">
 			欢迎您，<span class="dl-log-user">root</span><a href="#" title="退出系统"
 				class="dl-log-quit">[退出]</a>

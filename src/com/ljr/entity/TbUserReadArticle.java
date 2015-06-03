@@ -3,7 +3,7 @@ package com.ljr.entity;
 import java.util.Date;
 
 /**
- * TbUserReadArticle entity. @author MyEclipse Persistence Tools
+ * TbUserReadArticle 用户阅读文章
  */
 
 public class TbUserReadArticle implements java.io.Serializable {

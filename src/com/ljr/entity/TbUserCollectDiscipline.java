@@ -3,7 +3,7 @@ package com.ljr.entity;
 import java.util.Date;
 
 /**
- * TbUserCollectDiscipline entity. @author MyEclipse Persistence Tools
+ * TbUserCollectDiscipline 用户收藏
  */
 
 public class TbUserCollectDiscipline implements java.io.Serializable {

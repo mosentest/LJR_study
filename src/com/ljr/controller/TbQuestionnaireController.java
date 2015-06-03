@@ -51,6 +51,7 @@ public class TbQuestionnaireController {
 			jsonResponse.setMsg("获取成功");
 			jsonResponse.setPage(findAll);
 		} catch (Exception e) {
+			e.printStackTrace();
 			jsonResponse.setSuccess(false);
 			jsonResponse.setMsg("获取失败");
 		}

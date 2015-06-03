@@ -1,7 +1,11 @@
 package com.ljr.entity;
 
 import java.io.Serializable;
-
+/**
+ * 问卷中的题目
+ * @author 
+ *
+ */
 public class TbQuestionnaireDiscipline implements Serializable {
 	private Integer id;
 	private TbQuestionnaire tbQuestionnaire;

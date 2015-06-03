@@ -1,11 +1,9 @@
 package com.ljr.entity;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * TbUser entity. @author MyEclipse Persistence Tools
+ * TbUser 用户表
  */
 
 public class TbUser implements java.io.Serializable {

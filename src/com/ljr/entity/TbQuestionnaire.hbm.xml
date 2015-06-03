@@ -7,8 +7,13 @@
             <column name="id" />
             <generator class="native" />
         </id>
+		<property name="name" type="java.lang.String">
+			<column name="name" length="20" >
+				<comment>名称</comment>
+			</column>
+		</property>
         <many-to-one name="tbSubjectType" class="com.ljr.entity.TbSubjectType" fetch="select" lazy="false">
-            <column name="subject_tpye_id">
+            <column name="subject_type_id">
                 <comment>类型编号</comment>
             </column>
         </many-to-one>

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * TbDiscipline entity. @author MyEclipse Persistence Tools
+ * TbDiscipline 题目
  */
 
 public class TbDiscipline implements java.io.Serializable {

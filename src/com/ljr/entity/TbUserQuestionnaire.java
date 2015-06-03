@@ -2,7 +2,11 @@ package com.ljr.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * 用户测试
+ * @author 
+ *
+ */
 public class TbUserQuestionnaire implements Serializable{
 	private Integer id;
 	private TbUser tbUser;

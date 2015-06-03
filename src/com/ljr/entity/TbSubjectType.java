@@ -1,10 +1,8 @@
 package com.ljr.entity;
 
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * TbSubjectType entity. @author MyEclipse Persistence Tools
+ * TbSubjectType 科目
  */
 
 public class TbSubjectType implements java.io.Serializable {

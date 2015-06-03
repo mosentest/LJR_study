@@ -16,7 +16,7 @@
             </column>
         </many-to-one>
         <property name="title" type="java.lang.String">
-            <column name="title" length="20">
+            <column name="title" length="40">
                 <comment>文章标题</comment>
             </column>
         </property>

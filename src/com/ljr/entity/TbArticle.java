@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * TbArticle entity. @author MyEclipse Persistence Tools
+ * TbArticle 文章
  */
 
 public class TbArticle implements java.io.Serializable {

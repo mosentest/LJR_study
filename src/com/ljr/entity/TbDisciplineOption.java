@@ -1,7 +1,7 @@
 package com.ljr.entity;
 
 /**
- * TbDisciplineOption entity. @author MyEclipse Persistence Tools
+ * TbDisciplineOption 题目选项
  */
 
 public class TbDisciplineOption implements java.io.Serializable {
