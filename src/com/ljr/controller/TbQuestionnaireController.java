@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ljr.dao.TbDisciplineDAO;
 import com.ljr.dao.TbQuestionnaireDAO;
 import com.ljr.dao.TbQuestionnaireDisciplineDAO;
+import com.ljr.dao.TbSubjectTypeDAO;
 import com.ljr.dto.DisciplineDTO;
 import com.ljr.dto.QuestionnaireDTO;
+import com.ljr.entity.TbDiscipline;
 import com.ljr.entity.TbQuestionnaire;
 import com.ljr.entity.TbQuestionnaireDiscipline;
 import com.ljr.entity.TbQuestionnaire;
@@ -34,6 +37,8 @@ public class TbQuestionnaireController {
 	
 	private TbQuestionnaireDAO dao = new TbQuestionnaireDAO();
 	private TbQuestionnaireDisciplineDAO disciplineDAO = new TbQuestionnaireDisciplineDAO();
+	private TbSubjectTypeDAO typeDAO = new TbSubjectTypeDAO();
+	private TbDisciplineDAO tbDisciplineDAO = new TbDisciplineDAO();
 	
 	/**
 	 * 获取其中一个信息，并跳转页面
@@ -92,6 +97,7 @@ public class TbQuestionnaireController {
 				msg = "问卷名称不能为空";
 				throw new Exception(msg);
 			}
+			@SuppressWarnings("rawtypes")
 			List findByQuestion = dao.findByProperty("name", dto.getName());
 			if(!findByQuestion.isEmpty()){
 				msg = "该问卷名称已经存在";
@@ -117,37 +123,47 @@ public class TbQuestionnaireController {
 				msg = "问题5不能为空";
 				throw new Exception(msg);
 			}
-//			transientInstance.setQuestion(dto.getQuestion());
-//			transientInstance.setAnswers(dto.getAnswers());
-//			transientInstance.setScore(5);
-//			TbSubjectType findById = typeDAO.findById(Integer.parseInt(dto.getTpyeId()));
-//			transientInstance.setTbSubjectType(findById);
-//			//返回问题编号
-//			Integer save = dao.save(transientInstance);
-//			
-//			//设置编号
-//			transientInstance.setId(save);
-//			//保存问题-》选项
-//			//1
-//			TbQuestionnaireOption option1 = new TbQuestionnaireOption();
-//			option1.setContent(dto.getName1());
-//			option1.setTbQuestionnaire(transientInstance);
-//			optionDAO.save(option1);
-//			//2
-//			TbQuestionnaireOption option2 = new TbQuestionnaireOption();
-//			option2.setContent(dto.getName2());
-//			option2.setTbQuestionnaire(transientInstance);
-//			optionDAO.save(option2);
-//			//3
-//			TbQuestionnaireOption option3 = new TbQuestionnaireOption();
-//			option3.setContent(dto.getName3());
-//			option3.setTbQuestionnaire(transientInstance);
-//			optionDAO.save(option3);
-//			//4
-//			TbQuestionnaireOption option4 = new TbQuestionnaireOption();
-//			option4.setContent(dto.getName4());
-//			option4.setTbQuestionnaire(transientInstance);
-//			optionDAO.save(option4);
+			transientInstance.setName(dto.getName());
+			TbSubjectType findById = typeDAO.findById(Integer.parseInt(dto.getTypeId()));
+			transientInstance.setTbSubjectType(findById);
+			//返回问题编号
+			Integer save = dao.save(transientInstance);
+			
+			//设置编号
+			transientInstance.setId(save);
+			//保存问卷-》问题-》选项
+			//1
+			TbQuestionnaireDiscipline option1 = new TbQuestionnaireDiscipline();
+			//根据id获取信息
+			TbDiscipline tbDiscipline1 = tbDisciplineDAO.findById(Integer.parseInt(dto.getQuestion1()));
+			option1.setTbDiscipline(tbDiscipline1);
+			option1.setTbQuestionnaire(transientInstance);
+			disciplineDAO.save(option1);
+			//2
+			TbQuestionnaireDiscipline option2 = new TbQuestionnaireDiscipline();
+			TbDiscipline tbDiscipline2 = tbDisciplineDAO.findById(Integer.parseInt(dto.getQuestion2()));
+			option2.setTbDiscipline(tbDiscipline2);
+			option2.setTbQuestionnaire(transientInstance);
+			disciplineDAO.save(option2);
+			//3
+			TbQuestionnaireDiscipline option3 = new TbQuestionnaireDiscipline();
+			TbDiscipline tbDiscipline3 = tbDisciplineDAO.findById(Integer.parseInt(dto.getQuestion2()));
+			option3.setTbDiscipline(tbDiscipline3);
+			option3.setTbQuestionnaire(transientInstance);
+			disciplineDAO.save(option3);
+			//4
+			TbQuestionnaireDiscipline option4 = new TbQuestionnaireDiscipline();
+			TbDiscipline tbDiscipline4 = tbDisciplineDAO.findById(Integer.parseInt(dto.getQuestion4()));
+			option4.setTbDiscipline(tbDiscipline4);
+			option4.setTbQuestionnaire(transientInstance);
+			disciplineDAO.save(option4);
+			//5
+			TbQuestionnaireDiscipline option5 = new TbQuestionnaireDiscipline();
+			TbDiscipline tbDiscipline5 = tbDisciplineDAO.findById(Integer.parseInt(dto.getQuestion5()));
+			option5.setTbDiscipline(tbDiscipline5);
+			option5.setTbQuestionnaire(transientInstance);
+			disciplineDAO.save(option4);
+			
 			jsonResponse.setMsg("添加成功");
 			jsonResponse.setSuccess(true);
 		} catch (Exception e) {

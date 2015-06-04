@@ -6,11 +6,11 @@ public class QuestionnaireDTO implements Serializable{
 	private String id;
 	private String name;
 	private String typeId;
-	private String question1;
-	private String question2;
-	private String question3;
-	private String question4;
-	private String question5;
+	private String question1;//id
+	private String question2;//id
+	private String question3;//id
+	private String question4;//id
+	private String question5;//id
 	
 	public String getId() {
 		return id;

@@ -76,7 +76,7 @@
 
 		//跳转到新增页面
 		$('#add').click(function(){
-			window.location.href="jsp/article/add.jsp";
+			window.location.href="jsp/questionnaire/add.jsp";
 	 	});
 	
 	});
