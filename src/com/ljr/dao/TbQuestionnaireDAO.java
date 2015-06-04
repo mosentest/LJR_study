@@ -31,6 +31,19 @@ public class TbQuestionnaireDAO extends BaseHibernateDAO {
 			session.close();
 		}
 	}
+	
+	public List findByProperty(String propertyName, Object value) {
+		log.debug("finding TbQuestionnaire instance with property: " + propertyName + ", value: " + value);
+		try {
+			String queryString = "from TbQuestionnaire as model where model." + propertyName + "= ?";
+			Query queryObject = getSession().createQuery(queryString);
+			queryObject.setParameter(0, value);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("find by property name failed", re);
+			throw re;
+		}
+	}
 
 	public void delete(TbQuestionnaire persistentInstance) {
 		log.debug("deleting TbQuestionnaire instance");
