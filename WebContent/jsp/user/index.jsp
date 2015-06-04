@@ -3,8 +3,7 @@
 <div class="page-content">
       <div class="page-header fixed-div">
         <p>
-          <lable>文章标题：</lable><input type="text" id="title"/>
-          <lable>类型：</lable><input type="text" id="typeName"/>
+          <lable>用户帐号：</lable><input type="text" id="username"/>
         </p>
         <p>
           <button class="btn btn-primary btn-sm" id="search"><i class="icon-search align-top bigger-125"></i>查询</button>
@@ -19,7 +18,7 @@
           <div class="table-responsive"> 
            <div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
               <div class="row" >
-              <div class="col-sm-6"><div id="pager"><label >显示 <select size="1" onchange="javascript:gotoPage(1,'id=&title=&typeId=&typeName=')" id="p_pageSizeSelect">
+              <div class="col-sm-6"><div id="pager"><label >显示 <select size="1" onchange="javascript:gotoPage(1,'id=&username=')" id="p_pageSizeSelect">
                 <option value="10" selected="selected" >10</option>
                 <option value="25" >25</option>
                 <option value="50" >50</option>
@@ -34,9 +33,9 @@
                 <tr role="row"> 
                  <th role="columnheader" rowspan="1" colspan="1" style="width: 57px;" aria-label=""> <label> <input type="checkbox" class="ace"  id="checkall"/> <span class="lbl"></span> </label> </th> 
                  <th  role="columnheader"  rowspan="1" colspan="1" style="width: 50px;" >序号</th>
-                 <th  role="columnheader"  rowspan="1" colspan="1" style="width: 153px;" >文章标题</th> 
-                 <th role="columnheader"  rowspan="1" colspan="1" style="width: 133px;" >文章内容</th> 
-                 <th role="columnheader"  rowspan="1" colspan="1" style="width: 130px;" >文章类型</th> 
+                 <th  role="columnheader"  rowspan="1" colspan="1" style="width: 153px;" >用户帐号</th> 
+                 <th role="columnheader"  rowspan="1" colspan="1" style="width: 133px;" >姓名</th> 
+                 <th role="columnheader"  rowspan="1" colspan="1" style="width: 130px;" >最后登录日期</th> 
                  <th  role="columnheader" rowspan="1" colspan="1" style="width: 156px;" aria-label="">操作</th> 
                 </tr> 
                </thead> 
@@ -57,13 +56,12 @@
     <script type="text/javascript">
 	jQuery(function($) {
 	    $("#search").click(function () {
-	           var name=$("#title").val();
-	           var typeName=$("#typeName").val();
-	           gotoPage(1,"id="+"&title="+name+"&typeId="+"&typeName="+typeName);
+	           var name=$("#username").val();
+	           gotoPage(1,"id="+"&username="+name);
 	    });
 	    
 		/* 获取数据 */
-		gotoPage(1,"id=&title=&typeId=&typeName=");
+		gotoPage(1,"id=&username=");
 		
 		/* 复选框操作 */
 		$('table th input:checkbox').on('click' , function(){
@@ -77,7 +75,7 @@
 
 		//跳转到新增页面
 		$('#add').click(function(){
-			window.location.href="jsp/article/add.jsp";
+			window.location.href="jsp/user/add.jsp";
 	 	});
 	
 	});
@@ -89,7 +87,7 @@
 		var loc="<div class='col-sm-6'><div class='dataTables_paginate paging_bootstrap'><ul class='pagination'>";
 		$('#tb').html("");
 		$.ajax({
-			url : "article/list.html",
+			url : "user/list.html",
 			type : 'get',
 			data : "page=" + pageIndex + "&size=" + pageSize+"&"+cond,
 			aysnc : false,
@@ -107,9 +105,9 @@
 			              $('#tb').append( "<tr>"
 			            		  +"<td><label> <input type='checkbox' class='ace' name='checkbox' value='"+i+"' /><span class='lbl'></span> </label></td>"
 			            		  +"<td >"+(++i)+"</td> "
-			            		  +"<td >"+item.title+"</td> "
-			            		  +"<td >"+item.content+"</td> "
-			            		  +"<td >"+item.tbSubjectType.name+"</td> "
+			            		  +"<td >"+item.username+"</td> "
+			            		  +"<td >"+item.name+"</td> "
+			            		  +"<td >"+getSmpFormatDateByLong(item.loginTime,"yyyy-MM-dd")+"</td> "
 			            		  +"<td >"+"<div class='visible-md visible-lg hidden-sm hidden-xs action-buttons' id='buttontools'>"
 			            		  				+"<a class='green' href='classrooms/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"
 			            		  				+"<a class='red' href='classrooms/delete?id="+item.id+"' > <i class='icon-trash bigger-130'></i> </a>"

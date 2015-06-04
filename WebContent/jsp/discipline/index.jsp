@@ -3,7 +3,7 @@
 <div class="page-content">
       <div class="page-header fixed-div">
         <p>
-          <lable>文章标题：</lable><input type="text" id="title"/>
+          <lable>问题：</lable><input type="text" id="question"/>
           <lable>类型：</lable><input type="text" id="typeName"/>
         </p>
         <p>
@@ -19,7 +19,7 @@
           <div class="table-responsive"> 
            <div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
               <div class="row" >
-              <div class="col-sm-6"><div id="pager"><label >显示 <select size="1" onchange="javascript:gotoPage(1,'id=&title=&typeId=&typeName=')" id="p_pageSizeSelect">
+              <div class="col-sm-6"><div id="pager"><label >显示 <select size="1" onchange="javascript:gotoPage(1,'id=&question=&typeId=&typeName=')" id="p_pageSizeSelect">
                 <option value="10" selected="selected" >10</option>
                 <option value="25" >25</option>
                 <option value="50" >50</option>
@@ -34,9 +34,9 @@
                 <tr role="row"> 
                  <th role="columnheader" rowspan="1" colspan="1" style="width: 57px;" aria-label=""> <label> <input type="checkbox" class="ace"  id="checkall"/> <span class="lbl"></span> </label> </th> 
                  <th  role="columnheader"  rowspan="1" colspan="1" style="width: 50px;" >序号</th>
-                 <th  role="columnheader"  rowspan="1" colspan="1" style="width: 153px;" >文章标题</th> 
-                 <th role="columnheader"  rowspan="1" colspan="1" style="width: 133px;" >文章内容</th> 
-                 <th role="columnheader"  rowspan="1" colspan="1" style="width: 130px;" >文章类型</th> 
+                 <th  role="columnheader"  rowspan="1" colspan="1" style="width: 153px;" >问题</th> 
+                 <th role="columnheader"  rowspan="1" colspan="1" style="width: 133px;" >答案</th> 
+                 <th role="columnheader"  rowspan="1" colspan="1" style="width: 130px;" >问题类型</th> 
                  <th  role="columnheader" rowspan="1" colspan="1" style="width: 156px;" aria-label="">操作</th> 
                 </tr> 
                </thead> 
@@ -57,13 +57,13 @@
     <script type="text/javascript">
 	jQuery(function($) {
 	    $("#search").click(function () {
-	           var name=$("#title").val();
+	           var name=$("#question").val();
 	           var typeName=$("#typeName").val();
-	           gotoPage(1,"id="+"&title="+name+"&typeId="+"&typeName="+typeName);
+	           gotoPage(1,"id="+"&question="+name+"&typeId="+"&typeName="+typeName);
 	    });
 	    
 		/* 获取数据 */
-		gotoPage(1,"id=&title=&typeId=&typeName=");
+		gotoPage(1,"id=&question=&typeId=&typeName=");
 		
 		/* 复选框操作 */
 		$('table th input:checkbox').on('click' , function(){
@@ -77,7 +77,7 @@
 
 		//跳转到新增页面
 		$('#add').click(function(){
-			window.location.href="jsp/article/add.jsp";
+			window.location.href="jsp/discipline/add.jsp";
 	 	});
 	
 	});
@@ -89,7 +89,7 @@
 		var loc="<div class='col-sm-6'><div class='dataTables_paginate paging_bootstrap'><ul class='pagination'>";
 		$('#tb').html("");
 		$.ajax({
-			url : "article/list.html",
+			url : "discipline/list.html",
 			type : 'get',
 			data : "page=" + pageIndex + "&size=" + pageSize+"&"+cond,
 			aysnc : false,
@@ -107,8 +107,8 @@
 			              $('#tb').append( "<tr>"
 			            		  +"<td><label> <input type='checkbox' class='ace' name='checkbox' value='"+i+"' /><span class='lbl'></span> </label></td>"
 			            		  +"<td >"+(++i)+"</td> "
-			            		  +"<td >"+item.title+"</td> "
-			            		  +"<td >"+item.content+"</td> "
+			            		  +"<td >"+item.question+"</td> "
+			            		  +"<td >"+item.answers+"</td> "
 			            		  +"<td >"+item.tbSubjectType.name+"</td> "
 			            		  +"<td >"+"<div class='visible-md visible-lg hidden-sm hidden-xs action-buttons' id='buttontools'>"
 			            		  				+"<a class='green' href='classrooms/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"

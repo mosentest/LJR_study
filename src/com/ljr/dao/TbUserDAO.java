@@ -1,5 +1,6 @@
 package com.ljr.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.LockOptions;
@@ -26,6 +27,7 @@ public class TbUserDAO extends BaseHibernateDAO {
 		Session session = getSession();
 		Transaction beginTransaction = session.beginTransaction();
 		try {
+			transientInstance.setLoginTime(new Date());
 			session.save(transientInstance);
 			beginTransaction.commit();
 			log.debug("save successful");
@@ -168,6 +170,7 @@ public class TbUserDAO extends BaseHibernateDAO {
 		Session session = getSession();
 		Transaction beginTransaction = session.beginTransaction();
 		try {
+			detachedInstance.setLoginTime(new Date());
 			session.merge(detachedInstance);
 			beginTransaction.commit();
 			log.debug("merge successful");

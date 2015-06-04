@@ -34,11 +34,12 @@ public class TbUserQuestionnaireController {
 															@RequestParam(required = false) final String id,
 															@RequestParam(required = false) final String userId,
 															@RequestParam(required = false) final String username,
+															@RequestParam(required = false) final String questionaireName,
 															@RequestParam(required = false) final String typeId,
 															@RequestParam(required = false) final String typeName){
 		JsonResponse<TbUserQuestionnaire> jsonResponse = new JsonResponse<TbUserQuestionnaire>();
 		// 获取对应的参数
-		String[] params = new String[] { id, userId, username,typeId,typeName};
+		String[] params = new String[] { id, userId, username,questionaireName,typeId,typeName};
 		try {
 			if (params != null) {
 				for (int i = 0; i < params.length; i++) {
@@ -54,6 +55,7 @@ public class TbUserQuestionnaireController {
 			jsonResponse.setMsg("获取成功");
 			jsonResponse.setPage(findAll);
 		} catch (Exception e) {
+			e.printStackTrace();
 			jsonResponse.setSuccess(false);
 			jsonResponse.setMsg("获取失败");
 		}

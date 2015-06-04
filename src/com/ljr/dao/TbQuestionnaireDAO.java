@@ -104,9 +104,12 @@ public class TbQuestionnaireDAO extends BaseHibernateDAO {
 				buffer.append(" tb.id=:cid and ");
 			}
 			if (params[1] != null && !"".equals(params[1].trim())) {
-				buffer.append(" tb.tbSubjectType.id=:csid and ");
+				buffer.append(" tb.name like:ckname and ");
 			}
 			if (params[2] != null && !"".equals(params[2].trim())) {
+				buffer.append(" tb.tbSubjectType.id=:csid and ");
+			}
+			if (params[3] != null && !"".equals(params[3].trim())) {
 				buffer.append(" tb.tbSubjectType.name like:cname and ");
 			}
 			buffer.append(" 1=1 ");
@@ -118,10 +121,13 @@ public class TbQuestionnaireDAO extends BaseHibernateDAO {
 				queryObject.setInteger("cid", Integer.parseInt(params[0]));
 			}
 			if (params[1] != null && !"".equals(params[1].trim())) {
-				queryObject.setInteger("csid", Integer.parseInt(params[1]));
+				queryObject.setString("ckname", "%"+params[1] +"%");
 			}
 			if (params[2] != null && !"".equals(params[2].trim())) {
-				queryObject.setString("cname", params[2]);
+				queryObject.setInteger("csid", Integer.parseInt(params[2]));
+			}
+			if (params[3] != null && !"".equals(params[3].trim())) {
+				queryObject.setString("cname", "%"+params[3]+"%");
 			}
 		}
 		return queryObject;

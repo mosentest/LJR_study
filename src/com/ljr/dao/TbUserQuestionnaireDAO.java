@@ -139,9 +139,12 @@ public class TbUserQuestionnaireDAO extends BaseHibernateDAO {
 				buffer.append(" tb.tbUser.username like:cusername and ");
 			}
 			if (params[3] != null && !"".equals(params[3].trim())) {
-				buffer.append(" tb.tbQuestionnaire.tbSubjectType.id=:csid and ");
+				buffer.append(" tb.tbQuestionnaire.name like:cqname and ");
 			}
 			if (params[4] != null && !"".equals(params[4].trim())) {
+				buffer.append(" tb.tbQuestionnaire.tbSubjectType.id=:csid and ");
+			}
+			if (params[5] != null && !"".equals(params[5].trim())) {
 				buffer.append(" tb.tbQuestionnaire.tbSubjectType.name like:cname and ");
 			}
 			buffer.append(" 1=1 ");
@@ -159,10 +162,13 @@ public class TbUserQuestionnaireDAO extends BaseHibernateDAO {
 				queryObject.setString("cusername", "%"+params[2]+"%");
 			}
 			if (params[3] != null && !"".equals(params[3].trim())) {
-				queryObject.setInteger("csid", Integer.parseInt(params[3]));
+				queryObject.setString("cqname", "%"+params[3]+"%");
 			}
 			if (params[4] != null && !"".equals(params[4].trim())) {
-				queryObject.setString("cname", "%"+params[4]+"%");
+				queryObject.setInteger("csid", Integer.parseInt(params[4]));
+			}
+			if (params[5] != null && !"".equals(params[5].trim())) {
+				queryObject.setString("cname", "%"+params[5]+"%");
 			}
 		}
 		return queryObject;

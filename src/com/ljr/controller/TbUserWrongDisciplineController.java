@@ -80,11 +80,11 @@ public class TbUserWrongDisciplineController {
 															@RequestParam(required = false, defaultValue = "1000") int size, 
 															@RequestParam(required = false) final String id,
 															@RequestParam(required = false) final String userId,
-															@RequestParam(required = false) final String username,
-															@RequestParam(required = false) final String question){
+															@RequestParam(required = false) final String username/*,*/
+															/*@RequestParam(required = false) final String question*/){
 		JsonResponse<TbUserWrongDiscipline> jsonResponse = new JsonResponse<TbUserWrongDiscipline>();
 		// 获取对应的参数
-		String[] params = new String[] { id, userId, username, question};
+		String[] params = new String[] { id, userId, username/*, question*/};
 		try {
 			if (params != null) {
 				for (int i = 0; i < params.length; i++) {

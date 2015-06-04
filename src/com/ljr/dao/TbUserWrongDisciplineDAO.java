@@ -165,9 +165,9 @@ public class TbUserWrongDisciplineDAO extends BaseHibernateDAO {
 			if (params[2] != null && !"".equals(params[2].trim())) {
 				buffer.append(" tb.tbUser.username like:cusername and ");
 			}
-			if (params[3] != null && !"".equals(params[3].trim())) {
-				buffer.append(" tb.tbDiscipline.question like:ctitle and ");
-			}
+//			if (params[3] != null && !"".equals(params[3].trim())) {
+//				buffer.append(" tb.tbDiscipline.question like:ctitle and ");
+//			}
 			buffer.append(" 1=1 ");
 		}
 		Query queryObject = getSession().createQuery(buffer.toString());
@@ -182,9 +182,9 @@ public class TbUserWrongDisciplineDAO extends BaseHibernateDAO {
 			if (params[2] != null && !"".equals(params[2].trim())) {
 				queryObject.setString("cusername", "%"+params[2]+"%");
 			}
-			if (params[3] != null && !"".equals(params[3].trim())) {
-				queryObject.setString("ctitle", "%"+params[3]+"%");
-			}
+//			if (params[3] != null && !"".equals(params[3].trim())) {
+//				queryObject.setString("ctitle", "%"+params[3]+"%");
+//			}
 		}
 		return queryObject;
 	}
