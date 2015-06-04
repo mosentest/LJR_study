@@ -23,7 +23,7 @@ public class LoginController {
 	
 	private TbUserDAO dao = new TbUserDAO();
 	
-	@RequestMapping(value = "login.html", method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value = "login.html", method = RequestMethod.POST/*, consumes = "application/json"*/)
 	@ResponseBody
 	public JsonResponse<TbUser> login(@RequestBody final UserDTO userDTO, HttpSession session) {
 		JsonResponse<TbUser> jsonResponse = new JsonResponse<TbUser>();

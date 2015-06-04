@@ -21,7 +21,7 @@ public class TbDisciplineDAO extends BaseHibernateDAO {
 	public static final String ANSWERS = "answers";
 	public static final String SCORE = "score";
 
-	public void save(TbDiscipline transientInstance) {
+	public Integer save(TbDiscipline transientInstance) {
 		log.debug("saving TbDiscipline instance");
 		Session session = getSession();
 		Transaction beginTransaction = session.beginTransaction();
@@ -29,6 +29,7 @@ public class TbDisciplineDAO extends BaseHibernateDAO {
 			session.save(transientInstance);
 			beginTransaction.commit();
 			log.debug("save successful");
+			return transientInstance.getId();
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
 			throw re;

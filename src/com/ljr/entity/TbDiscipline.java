@@ -1,7 +1,5 @@
 package com.ljr.entity;
 
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * TbDiscipline 题目
