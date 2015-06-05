@@ -74,7 +74,7 @@ public class TbQuestionnaireController {
 	@RequestMapping(value = "questionnaire/delete", method = RequestMethod.GET)
 	public ModelAndView delete(final String id) {
 		try {
-			TbQuestionnaire entity =dao.findById(Integer.parseInt(id));
+			TbQuestionnaire entity = dao.findById(Integer.parseInt(id));
 			dao.delete(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +93,7 @@ public class TbQuestionnaireController {
 		JsonResponse<TbQuestionnaire> jsonResponse = new JsonResponse<TbQuestionnaire>();
 		try {
 			TbQuestionnaire transientInstance = new TbQuestionnaire();
-			if ("".equals(dto.getName())) {
+			if (dto.getName() == null || "".equals(dto.getName())) {
 				msg = "问卷名称不能为空";
 				throw new Exception(msg);
 			}
@@ -103,23 +103,27 @@ public class TbQuestionnaireController {
 				msg = "该问卷名称已经存在";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getQuestion1())) {
+			if(dto.getTypeId() == null || "".equals(dto.getTypeId()) ){
+				msg = "请选择类型";
+				throw new Exception(msg);
+			}
+			if (dto.getQuestion1() == null ||"".equals(dto.getQuestion1())) {
 				msg = "问题1不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getQuestion2())) {
+			if (dto.getQuestion2() == null ||"".equals(dto.getQuestion2())) {
 				msg = "问题2不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getQuestion3())) {
+			if (dto.getQuestion3() == null ||"".equals(dto.getQuestion3())) {
 				msg = "问题3不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getQuestion4())) {
+			if (dto.getQuestion4() == null || "".equals(dto.getQuestion4())) {
 				msg = "问题4不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getQuestion5())) {
+			if (dto.getQuestion5() == null || "".equals(dto.getQuestion5())) {
 				msg = "问题5不能为空";
 				throw new Exception(msg);
 			}
@@ -162,7 +166,7 @@ public class TbQuestionnaireController {
 			TbDiscipline tbDiscipline5 = tbDisciplineDAO.findById(Integer.parseInt(dto.getQuestion5()));
 			option5.setTbDiscipline(tbDiscipline5);
 			option5.setTbQuestionnaire(transientInstance);
-			disciplineDAO.save(option4);
+			disciplineDAO.save(option5);
 			
 			jsonResponse.setMsg("添加成功");
 			jsonResponse.setSuccess(true);

@@ -91,23 +91,23 @@ public class TbDisciplineController {
 		JsonResponse<TbDiscipline> jsonResponse = new JsonResponse<TbDiscipline>();
 		try {
 			TbDiscipline transientInstance = new TbDiscipline();
-			if ("".equals(dto.getAnswers())) {
+			if (dto.getAnswers() == null || "".equals(dto.getAnswers())) {
 				msg = "答案不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getName1())) {
+			if (dto.getName1() == null ||  "".equals(dto.getName1())) {
 				msg = "选项1不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getName2())) {
+			if (dto.getName2() == null || "".equals(dto.getName2())) {
 				msg = "选项2不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getName3())) {
+			if (dto.getName3() == null || "".equals(dto.getName3())) {
 				msg = "选项3不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getName4())) {
+			if (dto.getName4() == null ||"".equals(dto.getName4())) {
 				msg = "选项4不能为空";
 				throw new Exception(msg);
 			}
@@ -167,7 +167,7 @@ public class TbDisciplineController {
 		JsonResponse<TbDiscipline> jsonResponse = new JsonResponse<TbDiscipline>();
 		try {
 			TbDiscipline transientInstance = new TbDiscipline();
-			if ("".equals(dto.getQuestion())) {
+			if (dto.getQuestion() == null || "".equals(dto.getQuestion())) {
 				msg = "问题不能为空";
 				throw new Exception(msg);
 			}
@@ -176,23 +176,23 @@ public class TbDisciplineController {
 				msg = "该问题已经存在";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getAnswers())) {
+			if (dto.getAnswers() == null || "".equals(dto.getAnswers())) {
 				msg = "答案不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getName1())) {
+			if (dto.getName1() == null || "".equals(dto.getName1())) {
 				msg = "选项1不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getName2())) {
+			if (dto.getName2() == null || "".equals(dto.getName2())) {
 				msg = "选项2不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getName3())) {
+			if (dto.getName3() == null || "".equals(dto.getName3())) {
 				msg = "选项3不能为空";
 				throw new Exception(msg);
 			}
-			if ("".equals(dto.getName4())) {
+			if (dto.getName4() == null || "".equals(dto.getName4())) {
 				msg = "选项4不能为空";
 				throw new Exception(msg);
 			}

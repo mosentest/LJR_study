@@ -6,32 +6,31 @@
      <div class="modal-body">
       <form id="add-form-dialog" class="form-horizontal" role="form">
        <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right font" for="name"> 文章标题： </label> 
+        <label class="col-sm-3 control-label no-padding-right font" for="name"> 帐号： </label> 
         <div class="col-sm-9"> 
-         <input type="text" id="title" class="col-xs-8"  value="${bean.title }"  <c:if test="${update eq 'update'}">readonly="readonly"</c:if>/><div id="name-tip"></div>
+         <input type="text" id="username" class="col-xs-8"  value="${bean.username }"  <c:if test="${update eq 'update'}">readonly="readonly"</c:if>/><div id="name-tip"></div>
         </div> 
        </div> 
         <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right font" for="name"> 文章内容： </label> 
+        <label class="col-sm-3 control-label no-padding-right font" for="name">名字： </label> 
         <div class="col-sm-9"> 
-         <textarea rows="15" cols="29" id="content" >${bean.content }</textarea>
-        </div> 
+         <input type="text" id="name" class="col-xs-8"  value="${bean.name }"  <c:if test="${update eq 'update'}">readonly="readonly"</c:if>/><div id="name-tip"></div>
+       </div> 
        </div> 
        <div class="form-group"> 
-        <label class="col-sm-3 control-label no-padding-right font" for="state">类型： </label> 
+        <label class="col-sm-3 control-label no-padding-right font" for="state">密码： </label> 
         <div class="col-sm-9"> 
-          <select class="chosen-select" data-placeholder="请选择" id="typeId"></select>
-        </div> 
+          <input type="text" id="password" class="col-xs-8" /><div id="name-tip"></div>
+       </div> 
        </div> 
        <!-- 警告框 -->
        <div id="warning-block"></div>
-       <input type="hidden" id="typeId_update" value="${bean.tbSubjectType.id }">
        <input type="hidden" id="update" value="${update }">
        <input type="hidden" id="id" value="${bean.id }">
       </form> 
      </div> 
      <div class="modal-footer"> 
-      <button type="button" class="btn btn-primary btn-sm"  id="ok" autocomplete="off"  data-loading-text="正在处理中..." ><i class="icon-ok bigger-110" ></i>确定</button> 
+      <c:if test="${update ne 'update'}"><button type="button" class="btn btn-primary btn-sm"  id="ok" autocomplete="off"  data-loading-text="正在处理中..." ><i class="icon-ok bigger-110" ></i>确定</button></c:if> 
       <button type="button" class="btn btn-success btn-sm" name="backid" id="backid">返回列表</button>
      </div> 
     </div> 
@@ -41,7 +40,7 @@
 <script>
     $(function () {       
 		$('#backid').click(function(){
-				window.location.href="jsp/article/index.jsp";
+				window.location.href="jsp/user/index.jsp";
 		 });
 		
 		$("#typeId").empty();
@@ -66,15 +65,15 @@
         });
     	
 		$("#ok").on('click',function() { //提交事件
-			var surl ="article/add";
-			var result = JSON.stringify({"title":$("#title").val(),
-														"content":$("#content").val(),
-														"typeId": $("#typeId").val()
+			var surl ="user/add";
+			var result = JSON.stringify({"username":$("#username").val(),
+														"password":$("#password").val(),
+														"name": $("#name").val()
 								});
 			console.log(result);
 			//但是修改的时候
 			if("update" == $("#update").val()){
-				surl="article/edit";
+				surl="user/edit";
 				result= JSON.stringify({"title":$("#title").val(),
 													"content":$("#content").val(),
 													"id":$("#id").val(),
@@ -96,7 +95,7 @@
 			                    '<div class="success bold-center">'+data.msg+',<a href="jsp/classrooms/index.jsp" class="green">'+
 			                    '<span id="mysecond" class="green">'+5+
 			                    '</span>秒自动跳转</a><div></div>');
-		            	 countDown(5, "jsp/article/index.jsp");
+		            	 countDown(5, "jsp/user/index.jsp");
 			        }
 			        else{
 					    $("#warning-block").html('<div class="alert alert-block alert-danger">'+

@@ -8,7 +8,7 @@
        <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right font" for="name"> 问题： </label> 
         <div class="col-sm-9"> 
-         <input type="text" id="question" class="col-xs-8" value="${bean.question }"/><div id="name-tip"></div>
+         <input type="text" id="question" class="col-xs-8" value="${bean.question }" <c:if test="${update eq 'update'}">readonly="readonly"</c:if> /><div id="name-tip"></div>
         </div> 
        </div> 
         <div class="form-group">

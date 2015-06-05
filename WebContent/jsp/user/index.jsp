@@ -109,8 +109,8 @@
 			            		  +"<td >"+item.name+"</td> "
 			            		  +"<td >"+getSmpFormatDateByLong(item.loginTime,"yyyy-MM-dd")+"</td> "
 			            		  +"<td >"+"<div class='visible-md visible-lg hidden-sm hidden-xs action-buttons' id='buttontools'>"
-			            		  				+"<a class='green' href='classrooms/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"
-			            		  				+"<a class='red' href='classrooms/delete?id="+item.id+"' > <i class='icon-trash bigger-130'></i> </a>"
+			            		  				+"<a class='green' href='user/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"
+			            		  				+"<a class='red' href='user/delete?id="+item.id+"' > <i class='icon-trash bigger-130'></i> </a>"
 			            		  				+"</td> "+"</tr>");
 			            });
 						var begin = Math.max(1, msg.page.currentPage - pagerRange/2 );

@@ -15,7 +15,7 @@
         </p>
         <p>
           <button class="btn btn-primary btn-sm" id="search"><i class="icon-search align-top bigger-125"></i>查询</button>
-          <button class="btn btn-success btn-sm" id="add"><i class="icon-plus-sign align-top bigger-125"></i>添加</button>
+<!--           <button class="btn btn-success btn-sm" id="add"><i class="icon-plus-sign align-top bigger-125"></i>添加</button> -->
         </p>
       </div><!--page-header fixed-div  -->
       <div class="row"> 
@@ -123,8 +123,8 @@
 			            		  +"<td >"+item.sum+"分</td> "
 			            		  +"<td >"+getSmpFormatDateByLong(item.createDate,"yyyy-MM-dd")+"</td> "
 			            		  +"<td >"+"<div class='visible-md visible-lg hidden-sm hidden-xs action-buttons' id='buttontools'>"
-			            		  				+"<a class='green' href='classrooms/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"
-			            		  				+"<a class='red' href='classrooms/delete?id="+item.id+"' > <i class='icon-trash bigger-130'></i> </a>"
+// 			            		  				+"<a class='green' href='userQuestionnaire/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"
+// 			            		  				+"<a class='red' href='userQuestionnaire/delete?id="+item.id+"' > <i class='icon-trash bigger-130'></i> </a>"
 			            		  				+"</td> "+"</tr>");
 			            });
 						var begin = Math.max(1, msg.page.currentPage - pagerRange/2 );

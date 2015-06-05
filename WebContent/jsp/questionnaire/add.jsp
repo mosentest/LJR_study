@@ -8,56 +8,70 @@
        <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right font" for="name"> 问卷名称： </label> 
         <div class="col-sm-9"> 
-         <input type="text" id="question" class="col-xs-8" value="${bean.question}"/><div id="name-tip"></div>
+         <input type="text" id="name" class="col-xs-8" value="${bean.name}"/><div id="name-tip"></div>
         </div> 
-       </div>  
+       </div>
        <div class="form-group"> 
         <label class="col-sm-3 control-label no-padding-right font" for="state">类型： </label> 
         <div class="col-sm-9"> 
-          <select class="chosen-select" data-placeholder="请选择" id="typeId"></select>
+          <c:choose>
+		   <c:when test="${update eq 'update'}">
+		   ${bean.tbSubjectType.name}
+<!-- 		     <input type="text" id="name" class="col-xs-8" value="" readonly="readonly"/> -->
+		   </c:when>
+		   <c:otherwise><select class="chosen-select" data-placeholder="请选择" id="typeId"></select></c:otherwise>
+		  </c:choose>
         </div> 
        </div>
-       
        <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right font" for="name"> 问题1： </label> 
         <div class="col-sm-9"> 
-         <select  id="question1"></select>
+          <c:choose>
+		   <c:when test="${update eq 'update'}"> ${bean1.tbDiscipline.question}</c:when>
+		   <c:otherwise><select  id="question1"></select></c:otherwise>
+		  </c:choose>         
         </div> 
        </div> 
         <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right font" for="name"> 问题2： </label> 
         <div class="col-sm-9"> 
-         <select  id="question2"></select>
+          <c:choose>
+		   <c:when test="${update eq 'update'}">${bean2.tbDiscipline.question}</c:when>
+		   <c:otherwise><select  id="question2"></select></c:otherwise>
+		  </c:choose>            
         </div> 
        </div> 
         <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right font" for="name"> 问题3： </label> 
         <div class="col-sm-9"> 
-         <select  id="question3"></select>
+          <c:choose>
+		   <c:when test="${update eq 'update'}">${bean3.tbDiscipline.question}</c:when>
+		   <c:otherwise><select  id="question3"></select></c:otherwise>
+		  </c:choose>             
         </div> 
        </div> 
         <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right font" for="name"> 问题4： </label> 
         <div class="col-sm-9"> 
-         <select  id="question4"></select>
+          <c:choose>
+		   <c:when test="${update eq 'update'}">${bean4.tbDiscipline.question}</c:when>
+		   <c:otherwise><select  id="question4"></select></c:otherwise>
+		  </c:choose>            
         </div> 
        </div>
        <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right font" for="name"> 问题5： </label> 
         <div class="col-sm-9"> 
-         <select  id="question5"></select>
+          <c:choose>
+		   <c:when test="${update eq 'update'}">${bean5.tbDiscipline.question}</c:when>
+		   <c:otherwise><select  id="question5"></select></c:otherwise>
+		  </c:choose>         
         </div> 
        </div>
        <!-- 警告框 -->
        <div id="warning-block"></div>
        <input type="hidden" id="typeId_update" value="${bean.tbSubjectType.id }">
        <input type="hidden" id="update" value="${update }">
-       <input type="hidden" id="id" value="${bean.id }">
-       <input type="hidden" id="optionId1" value="${bean1.tbDiscipline.id }">
-       <input type="hidden" id="optionId2" value="${bean2.tbDiscipline.id }">
-       <input type="hidden" id="optionId3" value="${bean3.tbDiscipline.id }">
-       <input type="hidden" id="optionId4" value="${bean4.tbDiscipline.id }">
-       <input type="hidden" id="optionId4" value="${bean5.tbDiscipline.id }">
       </form> 
      </div> 
      <div class="modal-footer"> 
@@ -140,30 +154,30 @@
 		$("#ok").on('click',function() { //提交事件
 			console.log($("#typeId").val());
 			var surl ="questionnaire/add";
-			var result = JSON.stringify({"question":$("#question").val(),
-														"answers":$("#answers").val(),
-														"name1":$("#name1").val(),
-														"name2":$("#name2").val(),
-														"name3":$("#name3").val(),
-														"name4":$("#name4").val(),
-														"tpyeId": $("#typeId").val()
+			var result = JSON.stringify({"name":$("#name").val(),
+														"typeId":$("#typeId").val(),
+														"question1":$("#question1").val(),
+														"question2":$("#question2").val(),
+														"question3":$("#question3").val(),
+														"question4":$("#question4").val(),
+														"question5": $("#question5").val()
 								});
 			//但是修改的时候
 			if("update" == $("#update").val()){
-				surl="questionnaire/edit";
-				result= JSON.stringify({"question":$("#question").val(),
-													"answers":$("#answers").val(),
-													"id":$("#id").val(),
-													"optionId1":$("#optionId1").val(),
-													"optionId2":$("#optionId2").val(),
-													"optionId3":$("#optionId3").val(),
-													"optionId4":$("#optionId4").val(),
-													"name1":$("#name1").val(),
-													"name2":$("#name2").val(),
-													"name3":$("#name3").val(),
-													"name4":$("#name4").val(),
-													"tpyeId": $("#typeId").val()
-							});
+// 				surl="questionnaire/edit";
+// 				result= JSON.stringify({"question":$("#question").val(),
+// 													"answers":$("#answers").val(),
+// 													"id":$("#id").val(),
+// 													"optionId1":$("#optionId1").val(),
+// 													"optionId2":$("#optionId2").val(),
+// 													"optionId3":$("#optionId3").val(),
+// 													"optionId4":$("#optionId4").val(),
+// 													"name1":$("#name1").val(),
+// 													"name2":$("#name2").val(),
+// 													"name3":$("#name3").val(),
+// 													"name4":$("#name4").val(),
+// 													"tpyeId": $("#typeId").val()
+// 							});
 			}
 			console.log(result);
 	        $.ajax({

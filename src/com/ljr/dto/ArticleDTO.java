@@ -3,10 +3,17 @@ package com.ljr.dto;
 import java.io.Serializable;
 
 public class ArticleDTO implements Serializable {
+	private String id;
 	private String title;
 	private String content;
 	private String typeId;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getTitle() {
 		return title;
 	}

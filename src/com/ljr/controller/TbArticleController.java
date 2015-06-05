@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import com.ljr.entity.TbArticle;
 import com.ljr.entity.TbSubjectType;
 import com.ljr.util.JsonResponse;
 import com.ljr.util.Page;
+import com.ljr.util.StringUtil;
 /**
  * 文章action
  * @author 
@@ -30,28 +32,80 @@ public class TbArticleController {
 	private String msg = "";
 	
 	/**
+	 * 修改信息
+	 */
+	@RequestMapping(value = "article/edit", method = RequestMethod.POST)
+	@ResponseBody
+	public JsonResponse<TbArticle> edit(@RequestBody final ArticleDTO dto) {
+		JsonResponse<TbArticle> jsonResponse = new JsonResponse<TbArticle>();
+		try {
+			TbArticle entity = new TbArticle();
+			if(StringUtil.isEmpty(dto.getContent())){
+				msg = "内容不能为空";
+				throw  new Exception(msg);
+			}
+			if(StringUtil.isEmpty(dto.getTypeId())){
+				msg = "请选择类型";
+				throw  new Exception(msg);
+			}
+			entity.setId(Integer.parseInt(dto.getId()));
+			entity.setTitle(dto.getTitle());
+			entity.setContent(dto.getContent());
+			TbSubjectType findById = subjectTypeDAO.findById(Integer.parseInt(dto.getTypeId()));
+			entity.setTbSubjectType(findById);
+			dao.merge(entity);
+			jsonResponse.setMsg("修改成功");
+			jsonResponse.setSuccess(true);
+		} catch (Exception e) {
+			jsonResponse.setSuccess(false);
+			jsonResponse.setMsg(msg);
+		}
+		return jsonResponse;
+	}
+	
+	/**
+	 * 删除信息
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "article/delete", method = RequestMethod.GET)
+	public ModelAndView delete(final String id) {
+		try {
+			TbArticle entity =dao.findById(Integer.parseInt(id));
+			dao.delete(entity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("article/index");
+	}
+	
+	/**
 	 * 添加信息
 	 */
 	@RequestMapping(value = "article/add", method = RequestMethod.POST)
 	@ResponseBody
-	public JsonResponse<TbArticle> add(final ArticleDTO dto) {
+	public JsonResponse<TbArticle> add(@RequestBody final ArticleDTO dto) {
 		JsonResponse<TbArticle> jsonResponse = new JsonResponse<TbArticle>();
 		try {
 			TbArticle entity = new TbArticle();
-			if("".equals(dto.getTitle())){
+			if(StringUtil.isEmpty(dto.getTitle())){
 				msg = "标题不能为空";
-				throw  new Exception();
+				throw  new Exception(msg);
 			}
 			List findByTitle = dao.findByTitle(dto.getTitle());
 			if(!findByTitle.isEmpty()){
 				msg = "标题已经存在";
-				throw  new Exception();
+				throw  new Exception(msg);
+			}
+			if(StringUtil.isEmpty(dto.getContent())){
+				msg = "内容不能为空";
+				throw  new Exception(msg);
+			}
+			if(StringUtil.isEmpty(dto.getTypeId())){
+				msg = "请选择类型";
+				throw  new Exception(msg);
 			}
 			entity.setTitle(dto.getTitle());
-			if("".equals(dto.getContent())){
-				msg = "内容不能为空";
-				throw  new Exception();
-			}
 			entity.setContent(dto.getContent());
 			TbSubjectType findById = subjectTypeDAO.findById(Integer.parseInt(dto.getTypeId()));
 			entity.setTbSubjectType(findById);
@@ -59,6 +113,7 @@ public class TbArticleController {
 			jsonResponse.setMsg("添加成功");
 			jsonResponse.setSuccess(true);
 		} catch (Exception e) {
+			e.printStackTrace();
 			jsonResponse.setSuccess(false);
 			jsonResponse.setMsg(msg);
 		}
