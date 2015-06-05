@@ -1,6 +1,5 @@
 package com.ljr.controller;
 
-import org.codehaus.jackson.JsonParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,6 @@ import com.ljr.dto.UserWrongDisciplineDTO;
 import com.ljr.entity.TbDiscipline;
 import com.ljr.entity.TbUser;
 import com.ljr.entity.TbUserCollectDiscipline;
-import com.ljr.entity.TbUserWrongDiscipline;
 import com.ljr.util.JsonResponse;
 import com.ljr.util.Page;
 
@@ -36,15 +34,16 @@ public class TbUserCollectDisciplineController {
 			TbUserCollectDiscipline checkExist = dao.checkExist(Integer.parseInt(dto.getUserId()), Integer.parseInt(dto.getDisciplineId()));
 			if (checkExist != null) {
 				dao.merge(checkExist);
+			}else{
+				TbUserCollectDiscipline transientInstance = new TbUserCollectDiscipline();
+				TbUser tbUser = new TbUser();
+				tbUser.setId(Integer.parseInt(dto.getUserId()));
+				transientInstance.setTbUser(tbUser);
+				TbDiscipline tbDiscipline = new TbDiscipline();
+				tbDiscipline.setId(Integer.parseInt(dto.getDisciplineId()));
+				transientInstance.setTbDiscipline(tbDiscipline );
+				dao.save(transientInstance);
 			}
-			TbUserCollectDiscipline transientInstance = new TbUserCollectDiscipline();
-			TbUser tbUser = new TbUser();
-			tbUser.setId(Integer.parseInt(dto.getUserId()));
-			transientInstance.setTbUser(tbUser);
-			TbDiscipline tbDiscipline = new TbDiscipline();
-			tbDiscipline.setId(Integer.parseInt(dto.getDisciplineId()));
-			transientInstance.setTbDiscipline(tbDiscipline );
-			dao.save(transientInstance);
 			jsonResponse.setMsg("添加成功");
 			jsonResponse.setSuccess(true);
 		} catch (Exception e) {

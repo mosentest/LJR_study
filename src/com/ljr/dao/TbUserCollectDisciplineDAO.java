@@ -179,6 +179,7 @@ public class TbUserCollectDisciplineDAO extends BaseHibernateDAO {
 	public TbUserCollectDiscipline merge(TbUserCollectDiscipline detachedInstance) {
 		log.debug("merging TbUserCollectDiscipline instance");
 		try {
+			detachedInstance.setCollectDate(new Date());
 			TbUserCollectDiscipline result = (TbUserCollectDiscipline) getSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;

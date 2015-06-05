@@ -33,15 +33,16 @@ public class TbUserWrongDisciplineController {
 			TbUserWrongDiscipline checkExist = dao.checkExist(Integer.parseInt(dto.getUserId()), Integer.parseInt(dto.getDisciplineId()));
 			if (checkExist != null) {
 				dao.merge(checkExist);
+			}else{
+				TbUserWrongDiscipline transientInstance = new TbUserWrongDiscipline();
+				TbUser tbUser = new TbUser();
+				tbUser.setId(Integer.parseInt(dto.getUserId()));
+				transientInstance.setTbUser(tbUser);
+				TbDiscipline tbDiscipline = new TbDiscipline();
+				tbDiscipline.setId(Integer.parseInt(dto.getDisciplineId()));
+				transientInstance.setTbDiscipline(tbDiscipline );
+				dao.save(transientInstance);
 			}
-			TbUserWrongDiscipline transientInstance = new TbUserWrongDiscipline();
-			TbUser tbUser = new TbUser();
-			tbUser.setId(Integer.parseInt(dto.getUserId()));
-			transientInstance.setTbUser(tbUser);
-			TbDiscipline tbDiscipline = new TbDiscipline();
-			tbDiscipline.setId(Integer.parseInt(dto.getDisciplineId()));
-			transientInstance.setTbDiscipline(tbDiscipline );
-			dao.save(transientInstance);
 			jsonResponse.setMsg("添加成功");
 			jsonResponse.setSuccess(true);
 		} catch (Exception e) {
