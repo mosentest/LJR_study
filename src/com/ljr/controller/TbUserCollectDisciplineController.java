@@ -1,5 +1,6 @@
 package com.ljr.controller;
 
+import org.codehaus.jackson.JsonParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +60,9 @@ public class TbUserCollectDisciplineController {
 	public JsonResponse<TbUserCollectDiscipline> delete(@RequestBody String id){
 		JsonResponse<TbUserCollectDiscipline> jsonResponse = new JsonResponse<TbUserCollectDiscipline>();
 		try {
+			//"{\"id\":\"1\"}"
+			id = id.substring(id.indexOf(":"), id.indexOf("}"));
+			id = id.substring(id.indexOf("\"") + 1, id.length() - 1);
 			TbUserCollectDiscipline findById = dao.findById(Integer.parseInt(id));
 			dao.delete(findById);
 			jsonResponse.setMsg("删除成功");

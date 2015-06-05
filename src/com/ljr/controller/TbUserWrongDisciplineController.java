@@ -57,6 +57,9 @@ public class TbUserWrongDisciplineController {
 	public JsonResponse<TbUserWrongDiscipline> delete(@RequestBody String id){
 		JsonResponse<TbUserWrongDiscipline> jsonResponse = new JsonResponse<TbUserWrongDiscipline>();
 		try {
+			//"{\"id\":\"1\"}"
+			id = id.substring(id.indexOf(":"), id.indexOf("}"));
+			id = id.substring(id.indexOf("\"") + 1, id.length() - 1);
 			TbUserWrongDiscipline findById = dao.findById(Integer.parseInt(id));
 			dao.delete(findById);
 			jsonResponse.setMsg("删除成功");
