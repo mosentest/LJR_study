@@ -56,7 +56,7 @@ public class TbUserCollectDisciplineController {
 	
 	@RequestMapping(value = "usercollectdiscipline/delete", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public JsonResponse<TbUserCollectDiscipline> delete(@RequestParam(required=true) String id){
+	public JsonResponse<TbUserCollectDiscipline> delete(@RequestBody String id){
 		JsonResponse<TbUserCollectDiscipline> jsonResponse = new JsonResponse<TbUserCollectDiscipline>();
 		try {
 			TbUserCollectDiscipline findById = dao.findById(Integer.parseInt(id));

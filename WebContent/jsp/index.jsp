@@ -19,7 +19,7 @@
 	<div class="header">
 		<div class="dl-title"><span class="">移动微学习系统后台管理</span></div>
 		<div class="dl-log">
-			欢迎您，<span class="dl-log-user">root</span><a href="#" title="退出系统"
+			欢迎您，<span class="dl-log-user">${username }</span><a href="jsp/login.jsp" title="退出系统"
 				class="dl-log-quit">[退出]</a>
 		</div>
 	</div>

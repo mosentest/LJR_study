@@ -10,8 +10,8 @@
 <base href="<%=basePath%>">
     <title>移动微学习系统后台管理</title>
 	<meta charset="UTF-8">
-   	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-responsive.css" />
+   	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bui-min.css" />
     <script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
     <script type="text/javascript" src="assets/js/scm.js"></script>
     <style type="text/css">
@@ -50,7 +50,7 @@
 <div class="container">
 
     <form class="form-signin">
-        <h2 class="form-signin-heading">欢迎使用，请登录</h2>
+        <h2 class="form-signin-heading">移动微学习系统后台管理</h2>
         帐号：<input type="text" name="username" id="username" class="input-block-level" placeholder="账号">
        密码: <input type="password" name="password"  id="password" class="input-block-level" placeholder="密码">
         <p><button class="btn btn-large btn-primary" type="button" id="login">登录</button></p>

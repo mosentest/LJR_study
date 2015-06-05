@@ -54,7 +54,7 @@ public class TbUserWrongDisciplineController {
 	
 	@RequestMapping(value = "userwrongdiscipline/delete", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public JsonResponse<TbUserWrongDiscipline> delete(@RequestParam(required=true) String id){
+	public JsonResponse<TbUserWrongDiscipline> delete(@RequestBody String id){
 		JsonResponse<TbUserWrongDiscipline> jsonResponse = new JsonResponse<TbUserWrongDiscipline>();
 		try {
 			TbUserWrongDiscipline findById = dao.findById(Integer.parseInt(id));
