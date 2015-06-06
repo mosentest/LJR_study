@@ -149,6 +149,9 @@ public class TbUserQuestionnaireDAO extends BaseHibernateDAO {
 			}
 			buffer.append(" 1=1 ");
 		}
+		//清考缓存
+		getSession().clear();
+		
 		Query queryObject = getSession().createQuery(buffer.toString());
 		// 分页显示的操作
 		if (params != null && params.length > 0) {

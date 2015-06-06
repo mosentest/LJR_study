@@ -37,7 +37,7 @@
                  <th role="columnheader"  rowspan="1" colspan="1" style="width: 133px;" >问题</th> 
                  <th role="columnheader"  rowspan="1" colspan="1" style="width: 130px;" >类型</th>
                  <th role="columnheader"  rowspan="1" colspan="1" style="width: 130px;" >收藏日期</th>
-                 <th  role="columnheader" rowspan="1" colspan="1" style="width: 156px;" aria-label="">操作</th> 
+<!--                  <th  role="columnheader" rowspan="1" colspan="1" style="width: 156px;" aria-label="">操作</th>  -->
                 </tr> 
                </thead> 
                <tbody role="alert" aria-live="polite" aria-relevant="all"  id="tb">
@@ -98,7 +98,7 @@
 	         },
 			success : function(msg) {
 				if(msg.page.totalElement == 0){
-					$('#tb').append("<tr><td colspan="+7+"><div class='alert alert-block alert-danger'><div class='danger bold-center'>没结果</div><div></td></tr>");
+					$('#tb').append("<tr><td colspan="+6+"><div class='alert alert-block alert-danger'><div class='danger bold-center'>没结果</div><div></td></tr>");
 					$('#pages').html("");
 					$("#other").html("");
 				}else{
@@ -110,10 +110,11 @@
 			            		  +"<td >"+item.tbDiscipline.question+"</td> "
 			            		  +"<td >"+item.tbDiscipline.tbSubjectType.name+"</td> "
 			            		  +"<td >"+getSmpFormatDateByLong(item.collectDate,"yyyy-MM-dd")+"</td> "
-			            		  +"<td >"+"<div class='visible-md visible-lg hidden-sm hidden-xs action-buttons' id='buttontools'>"
-// 			            		  				+"<a class='green' href='userCollectDiscipline/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"
-// 			            		  				+"<a class='red' href='userCollectDiscipline/delete?id="+item.id+"' > <i class='icon-trash bigger-130'></i> </a>"
-			            		  				+"</td> "+"</tr>");
+// 			            		  +"<td >"+"<div class='visible-md visible-lg hidden-sm hidden-xs action-buttons' id='buttontools'>"
+// // 			            		  				+"<a class='green' href='userCollectDiscipline/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"
+// // 			            		  				+"<a class='red' href='userCollectDiscipline/delete?id="+item.id+"' > <i class='icon-trash bigger-130'></i> </a>"
+// 			            		  				+"</td> "
+			            		  				+"</tr>");
 			            });
 						var begin = Math.max(1, msg.page.currentPage - pagerRange/2 );
 						var end = Math.min(begin + (pagerRange - 1), msg.page.totalPage);

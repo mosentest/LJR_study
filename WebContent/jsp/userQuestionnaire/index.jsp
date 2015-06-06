@@ -9,8 +9,8 @@
 <!-- 															@RequestParam(required = false) final String questionaireName, -->
 <!-- 															@RequestParam(required = false) final String typeId, -->
 <!-- 															@RequestParam(required = false) final String typeName -->
-          <lable>文章标题：</lable><input type="text" id="username"/>
-          <lable>文章标题：</lable><input type="text" id="questionaireName"/>
+          <lable>用户帐号：</lable><input type="text" id="username"/>
+          <lable>问卷名称：</lable><input type="text" id="questionaireName"/>
           <lable>类型：</lable><input type="text" id="typeName"/>
         </p>
         <p>
@@ -46,7 +46,7 @@
                  <th role="columnheader"  rowspan="1" colspan="1" style="width: 130px;" >类型</th> 
                  <th role="columnheader"  rowspan="1" colspan="1" style="width: 130px;" >得分</th> 
                  <th role="columnheader"  rowspan="1" colspan="1" style="width: 130px;" >提交日期</th> 
-                 <th  role="columnheader" rowspan="1" colspan="1" style="width: 156px;" aria-label="">操作</th> 
+<!--                  <th  role="columnheader" rowspan="1" colspan="1" style="width: 156px;" aria-label="">操作</th>  -->
                 </tr> 
                </thead> 
                <tbody role="alert" aria-live="polite" aria-relevant="all"  id="tb">
@@ -69,7 +69,7 @@
 	           var name=$("#username").val();
 	           var questionaireName=$("#questionaireName").val();
 	           var typeName=$("#typeName").val();
-	           gotoPage(1,"id="+"&userId="+"&username="+name+"&questionaireName="+questionaireName+"&typeId="+typeId+"&typeName="+typeName);
+	           gotoPage(1,"id=&userId=&username="+name+"&questionaireName="+questionaireName+"&typeId=&typeName="+typeName);
 	    });
 	    
 		/* 获取数据 */
@@ -109,7 +109,7 @@
 	         },
 			success : function(msg) {
 				if(msg.page.totalElement == 0){
-					$('#tb').append("<tr><td colspan="+8+"><div class='alert alert-block alert-danger'><div class='danger bold-center'>没结果</div><div></td></tr>");
+					$('#tb').append("<tr><td colspan="+7+"><div class='alert alert-block alert-danger'><div class='danger bold-center'>没结果</div><div></td></tr>");
 					$('#pages').html("");
 					$("#other").html("");
 				}else{
@@ -122,10 +122,11 @@
 			            		  +"<td >"+item.tbQuestionnaire.tbSubjectType.name+"</td> "
 			            		  +"<td >"+item.sum+"分</td> "
 			            		  +"<td >"+getSmpFormatDateByLong(item.createDate,"yyyy-MM-dd")+"</td> "
-			            		  +"<td >"+"<div class='visible-md visible-lg hidden-sm hidden-xs action-buttons' id='buttontools'>"
-// 			            		  				+"<a class='green' href='userQuestionnaire/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"
-// 			            		  				+"<a class='red' href='userQuestionnaire/delete?id="+item.id+"' > <i class='icon-trash bigger-130'></i> </a>"
-			            		  				+"</td> "+"</tr>");
+// 			            		  +"<td >"+"<div class='visible-md visible-lg hidden-sm hidden-xs action-buttons' id='buttontools'>"
+// // 			            		  				+"<a class='green' href='userQuestionnaire/showOne.html?id="+item.id+"' > <i class='icon-pencil bigger-130'></i> </a>"
+// // 			            		  				+"<a class='red' href='userQuestionnaire/delete?id="+item.id+"' > <i class='icon-trash bigger-130'></i> </a>"
+// 			            		  				+"</td> "
+			            		  				+"</tr>");
 			            });
 						var begin = Math.max(1, msg.page.currentPage - pagerRange/2 );
 						var end = Math.min(begin + (pagerRange - 1), msg.page.totalPage);

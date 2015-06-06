@@ -63,7 +63,7 @@
 $(function () {
 	$("#login").on('click',function() { //提交事件
 		$.ajax({
-         url: "login.html",
+         url: "weblogin.html",
 		 headers : {
                 'Accept' : 'application/json',
                 'Content-Type' : 'application/json;charset=utf-8'
